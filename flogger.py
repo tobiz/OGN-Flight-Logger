@@ -97,6 +97,7 @@ from flogger_process_log import process_log
 import argparse
 from flogger_dump_flights import dump_flights
 from flogger_get_coords import get_coords
+import os
 
 prev_vals = {'latitude': 0, 'longitude': 0, "altitude": 0, "speed": 0}
 nprev_vals = 	{"G-CKLW": {'latitude': 0, 'longitude': 0, "altitude": 0, "speed": 0, 'maxA': 0},
@@ -438,10 +439,21 @@ print "libfap_init"
 libfap.fap_init()
 
 SB_DATA = "SB_data" + str(start_time)
-#SB_DATA = "SB_data2015-03-05 14:57:27.980999"
-print "SB data file is: ", SB_DATA
-
 SB_Log = "SB_Log" + str(start_time)
+SB_DATA = str(SB_DATA).replace(" ","_")
+SB_Log = str(SB_Log).replace(" ","_")
+SB_DATA = str(SB_DATA).replace(":","-")
+SB_Log = str(SB_Log).replace(":","-")
+#SB_DATA = "SB_data2015-03-05 14:57:27.980999"
+if settings.FLOGGER_LOG_PATH <> "":
+	if os.path.isdir(settings.FLOGGER_LOG_PATH):
+		SB_DATA = os.path.abspath(settings.FLOGGER_LOG_PATH) + "/" + SB_DATA
+		SB_Log  = os.path.abspath(settings.FLOGGER_LOG_PATH) + "/" + SB_Log
+	else:
+		print "FLOGGER_LOG_PATH does not exist. Please check settings."
+print "SB data file is: ", SB_DATA
+print "SB log file is: ", SB_Log
+
 #sys.stdout = open(SB_Log, 'w')
 #print "Datafile open"
 test = False
