@@ -113,7 +113,6 @@ A_SMALL = float(0.01)  						# Small altitude delta of 0.01 a metre, ie 1cm
 V_SMALL = float(10.0)						# Small velocity delta of 10.0 kph counts as zero ie not moving
 QNH_SB = settings.FLOGGER_QNH 				# ASL for Sutton Bank(max 297m) in metres
 frst_time = False
-AIRFIELD = "SuttonBnk"
 # Coded 	001-099: Gliders, 
 # 			101-199: Tugs, 
 # 			201-299: Motor Gliders, 
@@ -423,7 +422,6 @@ if not bool(settings.FLOGGER_QNH):
 	print "Location is: ", settings.FLOGGER_AIRFIELD_DETAILS, " latitude: ", loc[0], " longitude: ", loc[1], " elevation: ", loc[2]	
 else:
 	print "Use location data from settings"	
-quit()	
 #	
 #-----------------------------------------------------------------
 # Make the connection to the APRS server
